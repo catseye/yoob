@@ -1,0 +1,50 @@
+yoob
+====
+
+yoob is a framework for implementing esoteric programming languages in Java.
+It aims to make it easy for a user to experiment with a large number of
+esolangs with a minimal install burden (i.e. in a Java applet), and to make
+it easy for designers to rapidly implement and showcase their esolangs.
+
+History
+-------
+
+The current released version of yoob is 0.2.  It is as it stands before you.
+I decided to release it, in spite of the source being embarassingly bad, so
+that the masses might mock it, and perhaps, in their collective moment of
+weakness, submit patches, or at least actionable flames (note: actionable.)
+
+Version 0.1 of yoob was purely a technology preview and was never officially
+released.
+
+What needs to be done most badly in version 0.3 is the ability to load an
+example source from a URL; this will allow several of the esolang
+implementations which I have already written, but have not yet included,
+to be released without embedded (possibly non-public domain) example programs
+and thus uncontentiously and unconfusingly into the public domain.
+
+The API should not be expected to be stable through the 0.x series.
+
+Development
+-----------
+
+yoob development is hosted on Bitbucket:
+
+    https://bitbucket.org/catseye/yoob/
+
+Bugs may be reported (and features requested) on the Issue Tracker:
+
+    https://bitbucket.org/catseye/yoob/issues
+
+Official release distfiles will be made available on the [yoob
+project page][] at [Cat's Eye Technologies'][].
+
+[Falderal project page]: http://catseye.tc/projects/yoob/
+[Cat's Eye Technologies]: http://catseye.tc/
+
+For Further Information
+-----------------------
+
+Please see the [yoob wiki][] on Bitbucket.
+
+[yoob wiki]: https://bitbucket.org/catseye/yoob/wiki/
