@@ -52,6 +52,7 @@ CLASSES=$(CDIR)/Element.class \
         $(CDIR)/AbstractDepiction.class \
         $(CDIR)/TapeDepiction.class \
         $(CDIR)/PlayfieldDepiction.class \
+        $(CDIR)/ProgramTextArea.class \
         $(CDIR)/TextAreasWorld.class \
         $(CDIR)/ContentPane.class \
         \
@@ -188,6 +189,9 @@ $(CDIR)/TapeDepiction.class: src/TapeDepiction.java $(CDIR)/Tape.class $(CDIR)/A
 
 $(CDIR)/PlayfieldDepiction.class: src/PlayfieldDepiction.java $(CDIR)/Playfield.class $(CDIR)/AbstractDepiction.class
 	$(JAVAC) $(JFLAGS) -cp bin -d bin src/PlayfieldDepiction.java
+
+$(CDIR)/ProgramTextArea.class: src/ProgramTextArea.java
+	$(JAVAC) $(JFLAGS) -cp bin -d bin src/ProgramTextArea.java
 
 $(CDIR)/TextAreasWorld.class: src/TextAreasWorld.java $(CDIR)/World.class
 	$(JAVAC) $(JFLAGS) -cp bin -d bin src/TextAreasWorld.java

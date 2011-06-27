@@ -94,7 +94,8 @@ public class ContentPane extends JPanel {
     private TapeDepiction[] td = {null, null, null, null, null};
     private JLabel statusBar;
     private Font editFont;
-    private JTextArea progBox, inputBox, outputBox, editBox, aboutBox;
+    private ProgramTextArea progBox;
+    private JTextArea inputBox, outputBox, editBox, aboutBox;
     private JScrollPane editScrollPane, aboutScrollPane;
     private JPanel interiorPanel, aboutPanel, editPanel;
     private JComponent languageComponent = null;
@@ -385,7 +386,7 @@ public class ContentPane extends JPanel {
 
         //---------- the program text -----------
         if (language.hasProgramText()) {
-            progBox = new JTextArea();
+            progBox = new ProgramTextArea();
             progBox.setEditable(false);
             progBox.setFont(editFont);
             JScrollPane progScrollPane = new JScrollPane(progBox);
@@ -568,9 +569,6 @@ public class ContentPane extends JPanel {
 
         refreshDepictions();
         this.setVisible(true);
-        if (language.hasProgramText()) {
-            progBox.requestFocus();
-        }
     }
 
     protected void refreshDepictions() {
@@ -579,9 +577,7 @@ public class ContentPane extends JPanel {
         if (language.hasProgramText()) {
             progBox.setText(currentState.getProgramText());
             int pos = currentState.getProgramPosition();
-            progBox.setCaretPosition(pos);
-            progBox.setSelectionStart(pos);
-            progBox.setSelectionEnd(pos + 1);
+            progBox.highlightPosition(pos);
         }
 
         for (int pfNum = 0; pfNum <= language.numPlayfields(); pfNum++) {
