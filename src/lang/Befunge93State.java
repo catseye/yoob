@@ -48,12 +48,16 @@ class Befunge93 implements Language {
     private void loadExamples() {
         if (examples == null) {
             examples = new ArrayList<ExampleProgram>();
+            String[][] properties = {
+                {"Author", "Chris Pressey"},
+                {"License", "Public Domain"},
+            };
             try {
                 examples.add(new ExampleProgram(
-                    "hello, world", new URL("http://catseye.tc/projects/befunge93/eg/hello.bf")
+                    "hello, world", new URL("http://catseye.tc/projects/befunge93/eg/hello.bf"), properties
                 ));
                 examples.add(new ExampleProgram(
-                    "enigmatic aphorisms", new URL("http://catseye.tc/projects/befunge93/eg/ea.bf")
+                    "enigmatic aphorisms", new URL("http://catseye.tc/projects/befunge93/eg/ea.bf"), properties
                 ));
             } catch (MalformedURLException e) {
                 // hmm.  That's too bad.

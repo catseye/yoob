@@ -26,12 +26,15 @@ class Sceql extends TextBasedLanguage<SceqlState> {
     private void loadExamples() {
         if (examples == null) {
             examples = new ArrayList<ExampleProgram>();
+            String[][] properties = {
+                {"Author", "Keymaker"},
+            };
             try {
                 examples.add(new ExampleProgram(
-                    "99 Bottles of Beer (Keymaker)", new URL("http://yiap.nfshost.com/esoteric/sceql/beer.sceql")
+                    "99 Bottles of Beer", new URL("http://yiap.nfshost.com/esoteric/sceql/beer.sceql"), properties
                 ));
                 examples.add(new ExampleProgram(
-                    "Quine (Keymaker)", new URL("http://yiap.nfshost.com/esoteric/sceql/quine.sceql")
+                    "Quine", new URL("http://yiap.nfshost.com/esoteric/sceql/quine.sceql"), properties
                 ));
             } catch (MalformedURLException e) {
                 // hmm.  That's too bad.

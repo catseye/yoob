@@ -15,6 +15,7 @@ public class ExampleProgram {
     protected String name = null;
     protected String text = null;
     protected URL url = null;
+    protected String[][] properties = null;
 
     public ExampleProgram(String name, String text) {
         this.name = name;
@@ -26,6 +27,18 @@ public class ExampleProgram {
         this.url = url;
     }
 
+    public ExampleProgram(String name, String text, String[][] properties) {
+        this.name = name;
+        this.text = text;
+        this.properties = properties;
+    }
+
+    public ExampleProgram(String name, URL url, String[][] properties) {
+        this.name = name;
+        this.url = url;
+        this.properties = properties;
+    }
+
     public String getName() {
         return name;
     }
@@ -35,6 +48,16 @@ public class ExampleProgram {
             fetchProgramText();
         }
         return text;
+    }
+
+    public String getProperty(String name) {
+        if (properties == null) return "";
+        for (String[] pair : properties) {
+            if (pair[0] == name) {
+                return pair[1];
+            }
+        }
+        return "";
     }
 
     protected void fetchProgramText() {
