@@ -11,11 +11,16 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
 
+import java.net.URL;
+import java.net.MalformedURLException;
+
 import java.awt.Graphics;
 import java.awt.Color;
 
 
 class Befunge93 implements Language {
+    private ArrayList<ExampleProgram> examples = null;
+  
     public String getName() {
         return "Befunge-93";
     }
@@ -40,36 +45,34 @@ class Befunge93 implements Language {
         return true;
     }
 
+    private void loadExamples() {
+        if (examples == null) {
+            examples = new ArrayList<ExampleProgram>();
+            try {
+                examples.add(new ExampleProgram(
+                    "hello, world", new URL("http://catseye.tc/projects/befunge93/eg/hello.bf")
+                ));
+                examples.add(new ExampleProgram(
+                    "enigmatic aphorisms", new URL("http://catseye.tc/projects/befunge93/eg/ea.bf")
+                ));
+            } catch (MalformedURLException e) {
+                // hmm.  That's too bad.
+            }
+        }
+    }
+      
     public List<String> exampleProgramNames() {
+        loadExamples();
         ArrayList<String> names = new ArrayList<String>();
-        names.add("hello, world");
-        names.add("hello, world mk ii");
+        for (ExampleProgram e : examples) {
+            names.add(e.getName());
+        }
         return names;
     }
 
     public Befunge93State loadExampleProgram(int index) {
-        String[][] program = {
-          {
-            // Example program written by Chris Pressey.
-            // Placed into the public domain.
-            "                 v",
-            ">v\"Hello world!\"0<",
-            ",:",
-            "^_25*,@",
-          },
-          {
-            // Example program written by Chris Pressey.
-            // Placed into the public domain.
-            "v       <",
-            ">0#v # \"Hello, World!\" # v#0  <",
-            "  >v    #               >v",
-            "  ,:                    ,:",
-            "  ^_25*,^               ^_25*,^",
-          },
-        };
-        Befunge93State s = new Befunge93State();
-        s.playfield.load(program[index]);
-        return s;
+        loadExamples();
+        return importFromText(examples.get(index).getText());
     }
 
     public Befunge93State importFromText(String text) {
