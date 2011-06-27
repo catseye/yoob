@@ -9,6 +9,7 @@ import java.util.List;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
@@ -666,9 +667,11 @@ public class ContentPane extends JPanel {
     }
 
     protected void loadExampleProgram(int index) {
+        setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         initialState = language.loadExampleProgram(index);
         applyCurrentlySelectedOptions(initialState);
         reset();
+        setCursor(null);
     }
 
     protected void showAboutBox() {
