@@ -22,6 +22,7 @@ CLASSES=$(CDIR)/Element.class \
         $(CDIR)/Matcher.class \
         \
         $(CDIR)/TextBasedLanguage.class \
+        $(CDIR)/ExampleProgram.class \
         \
         $(CDIR)/Position.class \
         $(CDIR)/IntegerElement.class \
@@ -111,8 +112,11 @@ $(CDIR)/Criterion.class: src/Criterion.java
 $(CDIR)/Matcher.class: src/Matcher.java
 	$(JAVAC) $(JFLAGS) -cp bin -d bin src/Matcher.java
 
-$(CDIR)/TextBasedLanguage.class: src/State.java
+$(CDIR)/TextBasedLanguage.class: src/TextBasedLanguage.java
 	$(JAVAC) $(JFLAGS) -cp bin -d bin src/TextBasedLanguage.java
+
+$(CDIR)/ExampleProgram.class: src/ExampleProgram.java
+	$(JAVAC) $(JFLAGS) -cp bin -d bin src/ExampleProgram.java
 
 $(CDIR)/Position.class: src/Position.java
 	$(JAVAC) $(JFLAGS) -cp bin -d bin src/Position.java
