@@ -70,6 +70,8 @@ LANGCLASSES=$(CDIR)/backflip/BackFlipState.class \
         $(CDIR)/onela/OneLaState.class \
         $(CDIR)/onelaoi/OneLAOIState.class \
         $(CDIR)/path/PATHState.class \
+        $(CDIR)/qdeql/QdeqlState.class \
+        $(CDIR)/sceql/SceqlState.class \
         $(CDIR)/smetana/SMETANAState.class \
         $(CDIR)/snusp/SNUSPState.class \
         $(CDIR)/twoill/TwoIllState.class \
@@ -214,6 +216,8 @@ ESOLANGS?=tc.catseye.yoob.backflip.BackFlipState/BackFlip \
           tc.catseye.yoob.onela.OneLaState/1L_a \
           tc.catseye.yoob.onelaoi.OneLAOIState/1L_AOI \
           tc.catseye.yoob.path.PATHState/PATH \
+          tc.catseye.yoob.qdeql.QdeqlState/Qdeql \
+          tc.catseye.yoob.sceql.SceqlState/Sceql \
           tc.catseye.yoob.smetana.SMETANAState/SMETANA \
           tc.catseye.yoob.snusp.SNUSPState/SNUSP \
           tc.catseye.yoob.twoill.TwoIllState/2-ill \
@@ -252,6 +256,12 @@ $(CDIR)/onelaoi/OneLAOIState.class: src/lang/OneLAOIState.java
 
 $(CDIR)/path/PATHState.class: src/lang/PATHState.java
 	$(JAVAC) $(JFLAGS) -cp "$(CLASSPATH)" -d bin src/lang/PATHState.java
+
+$(CDIR)/qdeql/QdeqlState.class: src/lang/QdeqlState.java
+	$(JAVAC) $(JFLAGS) -cp "$(CLASSPATH)" -d bin src/lang/QdeqlState.java
+
+$(CDIR)/sceql/SceqlState.class: src/lang/SceqlState.java
+	$(JAVAC) $(JFLAGS) -cp "$(CLASSPATH)" -d bin src/lang/SceqlState.java
 
 $(CDIR)/smetana/SMETANAState.class: src/lang/SMETANAState.java
 	$(JAVAC) $(JFLAGS) -cp "$(CLASSPATH)" -d bin src/lang/SMETANAState.java
