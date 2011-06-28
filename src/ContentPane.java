@@ -387,6 +387,7 @@ public class ContentPane extends JPanel {
         //---------- the program text -----------
         if (language.hasProgramText()) {
             progBox = new ProgramTextArea();
+            progBox.setFocusable(false);
             progBox.setEditable(false);
             progBox.setFont(editFont);
             JScrollPane progScrollPane = new JScrollPane(progBox);

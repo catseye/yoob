@@ -22,5 +22,6 @@ public class ProgramTextArea extends JTextArea {
         } catch (BadLocationException ble) {
             // oh well
         }
+        setCaretPosition(position);
     }
 }
