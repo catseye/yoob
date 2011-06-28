@@ -73,7 +73,9 @@ public class TapeDepiction extends AbstractDepiction {
             int paintY = (y - min) * cellHeight;
             v.render(g, e, marginX, marginY + paintY, cellWidth, cellHeight);
         }
-        
+
+        // TODO: draw grid lines here, if enabled
+
         int numHeads = t.numHeads();
         for (int c = 0; c < numHeads; c++) {
             Head head = t.getHead(c);

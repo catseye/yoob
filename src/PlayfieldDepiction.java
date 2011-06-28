@@ -93,6 +93,8 @@ public class PlayfieldDepiction extends AbstractDepiction {
                 v.render(g, e, marginX + paintX, marginY + paintY, cellWidth, cellHeight);
             }
         }
+
+        // TODO: draw grid lines here, if enabled
         
         int numCursors = p.numCursors();
         for (int c = 0; c < numCursors; c++) {

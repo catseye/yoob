@@ -117,6 +117,7 @@ public class ContentPane extends JPanel {
     private TextAreasWorld world = null;
 
     private double zoom = 1.0;
+    private boolean gridLines = false;
 
     public ContentPane(EsolangLoader loader, JApplet applet, String selectedLanguage) {
         super(new BorderLayout());
@@ -166,10 +167,10 @@ public class ContentPane extends JPanel {
         viewMenu.add(gridLinesMenuItem);
         gridLinesMenuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // ...
+                gridLines = ((AbstractButton)e.getSource()).getModel().isSelected();
+                refreshDepictions();
             } 
         });
-        gridLinesMenuItem.setEnabled(false);
 
         zoomInMenuItem = new JMenuItem("Zoom In");
         viewMenu.add(zoomInMenuItem);
@@ -555,6 +556,7 @@ public class ContentPane extends JPanel {
                 pd[pfNum].setPlayfield(currentState.getPlayfield(pfNum));
                 pd[pfNum].setView(currentState.getPlayfieldView(pfNum));
                 pd[pfNum].setZoom(zoom);
+                pd[pfNum].setGridLines(gridLines);
                 pd[pfNum].resize();
             }
         }
@@ -564,6 +566,7 @@ public class ContentPane extends JPanel {
                 td[tapeNum].setTape(currentState.getTape(tapeNum));
                 td[tapeNum].setView(currentState.getTapeView(tapeNum));
                 td[tapeNum].setZoom(zoom);
+                td[tapeNum].setGridLines(gridLines);
                 td[tapeNum].resize();
             }
         }

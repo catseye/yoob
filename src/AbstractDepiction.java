@@ -22,6 +22,7 @@ public abstract class AbstractDepiction extends JPanel {
     protected int cellWidth = 8;
     protected int margin;
     protected double zoom = 1.0;
+    protected boolean gridLines = false;
 
     public AbstractDepiction() {
         margin = 4;
@@ -33,6 +34,10 @@ public abstract class AbstractDepiction extends JPanel {
 
     public void setZoom(double zoom) {
         this.zoom = zoom;
+    }
+
+    public void setGridLines(boolean gridLines) {
+        this.gridLines = gridLines;
     }
 
     protected void paintComponent(Graphics g) {
