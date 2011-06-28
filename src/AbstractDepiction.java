@@ -21,6 +21,7 @@ public abstract class AbstractDepiction extends JPanel {
     protected int cellHeight = 8;
     protected int cellWidth = 8;
     protected int margin;
+    protected double zoom = 1.0;
 
     public AbstractDepiction() {
         margin = 4;
@@ -28,6 +29,10 @@ public abstract class AbstractDepiction extends JPanel {
 
     public void setView(View v) {
         this.v = v;
+    }
+
+    public void setZoom(double zoom) {
+        this.zoom = zoom;
     }
 
     protected void paintComponent(Graphics g) {
@@ -45,6 +50,8 @@ public abstract class AbstractDepiction extends JPanel {
         if (v.getPreferredCellHeightUnits().equals("ems")) {
             cellHeight *= fontHeight;
         }
+        cellWidth *= zoom;
+        cellHeight *= zoom;
         if (v.getSquareOff()) {
             if (cellHeight > cellWidth) cellWidth = cellHeight;
             if (cellWidth > cellHeight) cellHeight = cellWidth;

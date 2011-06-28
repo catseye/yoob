@@ -116,6 +116,8 @@ public class ContentPane extends JPanel {
 
     private TextAreasWorld world = null;
 
+    private double zoom = 1.0;
+
     public ContentPane(EsolangLoader loader, JApplet applet, String selectedLanguage) {
         super(new BorderLayout());
 
@@ -173,19 +175,21 @@ public class ContentPane extends JPanel {
         viewMenu.add(zoomInMenuItem);
         zoomInMenuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // ...
+                zoom += 0.25;
+                refreshDepictions();
             } 
         });
-        zoomInMenuItem.setEnabled(false);
 
         zoomOutMenuItem = new JMenuItem("Zoom Out");
         viewMenu.add(zoomOutMenuItem);
         zoomOutMenuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // ...
+                if (zoom > 0.25) {
+                    zoom -= 0.25;
+                    refreshDepictions();
+                }
             } 
         });
-        zoomOutMenuItem.setEnabled(false);
 
         //---------- the toolbar -----------
         buttonReset = new JButton("Reset");
@@ -550,6 +554,7 @@ public class ContentPane extends JPanel {
             if (pd[pfNum] != null) {
                 pd[pfNum].setPlayfield(currentState.getPlayfield(pfNum));
                 pd[pfNum].setView(currentState.getPlayfieldView(pfNum));
+                pd[pfNum].setZoom(zoom);
                 pd[pfNum].resize();
             }
         }
@@ -558,6 +563,7 @@ public class ContentPane extends JPanel {
             if (td[tapeNum] != null) {
                 td[tapeNum].setTape(currentState.getTape(tapeNum));
                 td[tapeNum].setView(currentState.getTapeView(tapeNum));
+                td[tapeNum].setZoom(zoom);
                 td[tapeNum].resize();
             }
         }
