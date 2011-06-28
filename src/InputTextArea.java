@@ -21,6 +21,7 @@ public class InputTextArea extends JTextArea {
                     append(c.toString());
                     e.consume();
                     setBackground(Color.white);
+                    setCaretPosition(getDocument().getLength());
                 }
             }
             public void keyPressed(KeyEvent e) {
