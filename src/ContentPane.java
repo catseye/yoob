@@ -89,7 +89,8 @@ public class ContentPane extends JPanel {
     private State currentState = null, initialState = null;
 
     private JMenuBar menuBar;
-    private JMenu languageMenu, examplesMenu, optionsMenu;
+    private JMenu languageMenu, examplesMenu, optionsMenu, viewMenu;
+    private JMenuItem gridLinesMenuItem, zoomInMenuItem, zoomOutMenuItem;
     private PlayfieldDepiction[] pd = {null, null, null, null, null};
     private TapeDepiction[] td = {null, null, null, null, null};
     private JLabel statusBar;
@@ -152,6 +153,39 @@ public class ContentPane extends JPanel {
         optionsMenu.getAccessibleContext().setAccessibleDescription("The menu containing options that configure language behaviour");
         menuBar.add(optionsMenu);
         optionsMenu.setVisible(false);
+
+        viewMenu = new JMenu("View");
+        viewMenu.setMnemonic(KeyEvent.VK_V);
+        viewMenu.getAccessibleContext().setAccessibleDescription("The menu of ways to alter how the program is displayed");
+        menuBar.add(viewMenu);
+        viewMenu.setVisible(false);
+
+        gridLinesMenuItem = new JCheckBoxMenuItem("Grid Lines");
+        viewMenu.add(gridLinesMenuItem);
+        gridLinesMenuItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // ...
+            } 
+        });
+        gridLinesMenuItem.setEnabled(false);
+
+        zoomInMenuItem = new JMenuItem("Zoom In");
+        viewMenu.add(zoomInMenuItem);
+        zoomInMenuItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // ...
+            } 
+        });
+        zoomInMenuItem.setEnabled(false);
+
+        zoomOutMenuItem = new JMenuItem("Zoom Out");
+        viewMenu.add(zoomOutMenuItem);
+        zoomOutMenuItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // ...
+            } 
+        });
+        zoomOutMenuItem.setEnabled(false);
 
         //---------- the toolbar -----------
         buttonReset = new JButton("Reset");
@@ -259,6 +293,8 @@ public class ContentPane extends JPanel {
                 }
                 languageMenu.setEnabled(true);
                 examplesMenu.setEnabled(true);
+                optionsMenu.setEnabled(true);
+                viewMenu.setEnabled(true);
                 refreshDepictions();
                 setVisible(true);
             } 
@@ -311,6 +347,8 @@ public class ContentPane extends JPanel {
                 }
                 languageMenu.setEnabled(true);
                 examplesMenu.setEnabled(true);
+                optionsMenu.setEnabled(true);
+                viewMenu.setEnabled(true);
                 refreshDepictions();
                 setVisible(true);
             } 
@@ -559,6 +597,8 @@ public class ContentPane extends JPanel {
             optionsMenu.add(mi);
             mi.addActionListener(new OptionMenuItemActionListener(this, name));
         }
+        
+        viewMenu.setVisible(true);
 
         // We just selected a language, but we don't have a program yet
         buttonReset.setEnabled(false);
@@ -601,6 +641,8 @@ public class ContentPane extends JPanel {
     protected void run() {
         languageMenu.setEnabled(false);
         examplesMenu.setEnabled(false);
+        optionsMenu.setEnabled(false);
+        viewMenu.setEnabled(false);
         buttonEdit.setEnabled(false);
         buttonReset.setEnabled(false);
         buttonStep.setEnabled(false);
@@ -613,6 +655,8 @@ public class ContentPane extends JPanel {
     protected void stop() {
         languageMenu.setEnabled(true);
         examplesMenu.setEnabled(true);
+        optionsMenu.setEnabled(true);
+        viewMenu.setEnabled(true);
         buttonEdit.setEnabled(true);
         buttonStop.setEnabled(false);
         buttonReset.setEnabled(true);
@@ -692,6 +736,8 @@ public class ContentPane extends JPanel {
         editBox.setText(initialState.exportToText());
         languageMenu.setEnabled(false);
         examplesMenu.setEnabled(false);
+        optionsMenu.setEnabled(false);
+        viewMenu.setEnabled(false);
         this.setVisible(true);
     }
 
@@ -706,6 +752,8 @@ public class ContentPane extends JPanel {
         aboutBox.setText(message);
         languageMenu.setEnabled(false);
         examplesMenu.setEnabled(false);
+        optionsMenu.setEnabled(false);
+        viewMenu.setEnabled(false);
         this.setVisible(true);
     }
 
