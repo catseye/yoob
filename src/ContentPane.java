@@ -13,7 +13,6 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -96,7 +95,8 @@ public class ContentPane extends JPanel {
     private JLabel statusBar;
     private Font editFont;
     private ProgramTextArea progBox;
-    private JTextArea inputBox, outputBox, editBox, aboutBox;
+    private InputTextArea inputBox;
+    private JTextArea outputBox, editBox, aboutBox;
     private JScrollPane editScrollPane, aboutScrollPane;
     private JPanel interiorPanel, aboutPanel, editPanel;
     private JComponent languageComponent = null;
@@ -265,14 +265,6 @@ public class ContentPane extends JPanel {
         //---- the (initially hidden) editor -----
         editFont = new Font("Monospaced", Font.PLAIN, 12);
         editBox = new JTextArea();
-        editBox.addKeyListener(new KeyListener() {
-            public void keyTyped(KeyEvent event) {
-            }
-            public void keyPressed(KeyEvent event) {
-            }
-            public void keyReleased(KeyEvent event) {
-            }
-        });
         editBox.setFont(editFont);
         editScrollPane = new JScrollPane(editBox);
 
@@ -445,74 +437,7 @@ public class ContentPane extends JPanel {
 
         //---------- input and output -----------
         if (language.hasInput() || language.hasOutput()) {
-            inputBox = new JTextArea();
-            inputBox.addKeyListener(new KeyListener() {
-                public void keyTyped(KeyEvent event) {
-                    inputBox.setBackground(Color.white);
-                }
-                public void keyPressed(KeyEvent e) {
-                  //displayInfo(e, "KEY PRESSED: ");
-                }
-                public void keyReleased(KeyEvent e) {
-                    //displayInfo(e, "KEY RELEASED: ");
-                    if (e.getID() != KeyEvent.KEY_TYPED) {
-                        if (e.getKeyCode() == (int)'0' && e.isControlDown()) {
-                            inputBox.append("\0");
-                            //inputBox.setBackground(Color.green);
-                        }
-                    }
-                }
-                private void displayInfo(KeyEvent e, String keyStatus) {
-
-                  // You should only rely on the key char if the event
-                  // is a key typed event.
-                  int id = e.getID();
-                  String keyString;
-                  if (id == KeyEvent.KEY_TYPED) {
-                    char c = e.getKeyChar();
-                    keyString = "key character = '" + c + "'";
-                  } else {
-                    int keyCode = e.getKeyCode();
-                    keyString = "key code = " + keyCode + " (" + KeyEvent.getKeyText(keyCode)
-                        + ")";
-                  }
-
-                  int modifiersEx = e.getModifiersEx();
-                  String modString = "extended modifiers = " + modifiersEx;
-                  String tmpString = KeyEvent.getModifiersExText(modifiersEx);
-                  if (tmpString.length() > 0) {
-                    modString += " (" + tmpString + ")";
-                  } else {
-                    modString += " (no extended modifiers)";
-                  }
-
-                  String actionString = "action key? ";
-                  if (e.isActionKey()) {
-                    actionString += "YES";
-                  } else {
-                    actionString += "NO";
-                  }
-
-                  String locationString = "key location: ";
-                  int location = e.getKeyLocation();
-                  if (location == KeyEvent.KEY_LOCATION_STANDARD) {
-                    locationString += "standard";
-                  } else if (location == KeyEvent.KEY_LOCATION_LEFT) {
-                    locationString += "left";
-                  } else if (location == KeyEvent.KEY_LOCATION_RIGHT) {
-                    locationString += "right";
-                  } else if (location == KeyEvent.KEY_LOCATION_NUMPAD) {
-                    locationString += "numpad";
-                  } else { // (location == KeyEvent.KEY_LOCATION_UNKNOWN)
-                    locationString += "unknown";
-                  }
-
-                  String newline = "\n";
-                  System.out.println(keyStatus + newline + "    " + keyString + newline
-                      + "    " + modString + newline + "    " + actionString + newline
-                      + "    " + locationString);
-                }
-            });
+            inputBox = new InputTextArea();
             JScrollPane inputScrollPane = new JScrollPane(inputBox);
             inputScrollPane.setPreferredSize(new Dimension(640, 100));
 

@@ -53,6 +53,7 @@ CLASSES=$(CDIR)/Element.class \
         $(CDIR)/TapeDepiction.class \
         $(CDIR)/PlayfieldDepiction.class \
         $(CDIR)/ProgramTextArea.class \
+        $(CDIR)/InputTextArea.class \
         $(CDIR)/TextAreasWorld.class \
         $(CDIR)/ContentPane.class \
         \
@@ -193,11 +194,16 @@ $(CDIR)/PlayfieldDepiction.class: src/PlayfieldDepiction.java $(CDIR)/Playfield.
 $(CDIR)/ProgramTextArea.class: src/ProgramTextArea.java
 	$(JAVAC) $(JFLAGS) -cp bin -d bin src/ProgramTextArea.java
 
+$(CDIR)/InputTextArea.class: src/InputTextArea.java
+	$(JAVAC) $(JFLAGS) -cp bin -d bin src/InputTextArea.java
+
 $(CDIR)/TextAreasWorld.class: src/TextAreasWorld.java $(CDIR)/World.class
 	$(JAVAC) $(JFLAGS) -cp bin -d bin src/TextAreasWorld.java
 
 # $(CDIR)/RunThread.class: src/RunThread.java
-$(CDIR)/ContentPane.class: src/ContentPane.java src/RunThread.java $(CDIR)/PlayfieldDepiction.class $(CDIR)/TextAreasWorld.class $(CDIR)/EsolangLoader.class
+$(CDIR)/ContentPane.class: src/ContentPane.java src/RunThread.java $(CDIR)/PlayfieldDepiction.class \
+                           $(CDIR)/ProgramTextArea.class $(CDIR)/InputTextArea.class \
+                           $(CDIR)/TextAreasWorld.class $(CDIR)/EsolangLoader.class
 	$(JAVAC) $(JFLAGS) -cp bin -d bin src/ContentPane.java src/RunThread.java
 
 $(CDIR)/EsolangLoader.class: src/EsolangLoader.java
