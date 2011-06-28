@@ -61,7 +61,8 @@ CLASSES=$(CDIR)/Element.class \
         $(CDIR)/Applet.class \
         $(CDIR)/GUI.class
 
-LANGCLASSES=$(CDIR)/backflip/BackFlipState.class \
+LANGCLASSES=$(CDIR)/ale/AleState.class \
+        $(CDIR)/backflip/BackFlipState.class \
         $(CDIR)/befunge93/Befunge93State.class \
         $(CDIR)/black/BlackState.class \
         $(CDIR)/bf/BrainfuckState.class \
@@ -215,7 +216,8 @@ $(CDIR)/GUI.class: src/GUI.java $(CDIR)/ContentPane.class
 $(CDIR)/Applet.class: src/Applet.java $(CDIR)/ContentPane.class
 	$(JAVAC) $(JFLAGS) -cp bin -d bin src/Applet.java
 
-ESOLANGS?=tc.catseye.yoob.backflip.BackFlipState/BackFlip \
+ESOLANGS?=tc.catseye.yoob.ale.AleState/Ale \
+          tc.catseye.yoob.backflip.BackFlipState/BackFlip \
           tc.catseye.yoob.befunge93.Befunge93State/Befunge-93 \
           tc.catseye.yoob.black.BlackState/Black \
           tc.catseye.yoob.bf.BrainfuckState/brainfuck \
@@ -233,6 +235,9 @@ ESOLANGS?=tc.catseye.yoob.backflip.BackFlipState/BackFlip \
           tc.catseye.yoob.twoill.TwoIllState/2-ill \
           tc.catseye.yoob.twol.TwoLState/2L \
           tc.catseye.yoob.wunnel.WunnelState/Wunnel
+
+$(CDIR)/ale/AleState.class: src/lang/AleState.java
+	$(JAVAC) $(JFLAGS) -cp "$(CLASSPATH)" -d bin src/lang/AleState.java
 
 $(CDIR)/backflip/BackFlipState.class: src/lang/BackFlipState.java
 	$(JAVAC) $(JFLAGS) -cp "$(CLASSPATH)" -d bin src/lang/BackFlipState.java
