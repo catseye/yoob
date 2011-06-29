@@ -85,6 +85,20 @@ public class PlayfieldDepiction extends AbstractDepiction {
             }
         }
 
+        if (gridLines) {
+            g.setColor(Color.lightGray);
+            int rightMarginX = marginX + (maxX - minX + 1) * cellWidth;
+            int bottomMarginY = marginY + (maxY - minY + 1) * cellHeight;
+            for (int y = minY + 1; y <= maxY; y++) {
+                int paintY = marginY + (y - minY) * cellHeight;
+                g.drawLine(marginX, paintY, rightMarginX, paintY);
+            }
+            for (int x = minX + 1; x <= maxX; x++) {
+                int paintX = marginX + (x - minX) * cellWidth;
+                g.drawLine(paintX, marginY, paintX, bottomMarginY);
+            }
+        }
+
         for (int y = minY; y <= maxY; y++) {
             int paintY = (y - minY) * cellHeight;
             for (int x = minX; x <= maxX; x++) {
@@ -93,8 +107,6 @@ public class PlayfieldDepiction extends AbstractDepiction {
                 v.render(g, e, marginX + paintX, marginY + paintY, cellWidth, cellHeight);
             }
         }
-
-        // TODO: draw grid lines here, if enabled
         
         int numCursors = p.numCursors();
         for (int c = 0; c < numCursors; c++) {

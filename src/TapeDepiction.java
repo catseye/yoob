@@ -68,13 +68,20 @@ public class TapeDepiction extends AbstractDepiction {
             v.renderBackground(g, e, marginX, marginY + paintY, cellWidth, cellHeight);
         }
 
+        if (gridLines) {
+            g.setColor(Color.lightGray);
+            int rightMarginX = marginX + cellWidth;
+            for (int y = min + 1; y <= max; y++) {
+                int paintY = marginY + (y - min) * cellHeight;
+                g.drawLine(marginX, paintY, rightMarginX, paintY);
+            }
+        }
+
         for (int y = min; y <= max; y++) {
             Element e = t.read(new IntegerElement(y));
             int paintY = (y - min) * cellHeight;
             v.render(g, e, marginX, marginY + paintY, cellWidth, cellHeight);
         }
-
-        // TODO: draw grid lines here, if enabled
 
         int numHeads = t.numHeads();
         for (int c = 0; c < numHeads; c++) {
