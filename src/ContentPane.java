@@ -16,6 +16,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import java.security.AccessControlException;
+
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.*;
@@ -106,6 +108,7 @@ public class ContentPane extends JPanel {
 
     private JButton buttonReset, buttonStep, buttonRun, buttonStop, buttonEdit;
     private JButton buttonAbout;
+    private JButton buttonEsowiki;
     private JSlider sliderRunSpeed;
 
     static final int HZ_MIN = 0;
@@ -319,7 +322,7 @@ public class ContentPane extends JPanel {
         interiorPanel.add(welcomeLabel, BorderLayout.CENTER);
 
         aboutPanel = new JPanel(new BorderLayout());
-        JButton buttonEsowiki = new JButton("Esowiki article...");
+        buttonEsowiki = new JButton("Esowiki article...");
         buttonEsowiki.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -641,11 +644,36 @@ public class ContentPane extends JPanel {
         refreshDepictions();
     }
 
+    static String oopsMessage =
+        "Could not load example program.  This is likely due to your Java Runtime's policy preventing it from\n" +
+        "fetching the example program from a remote URL.  To allow this, add the following section to\n" +
+        "your java.policy file:\n" +
+        "\n" +
+        "    grant {\n" +
+        "        permission java.lang.RuntimePermission \"getProtectionDomain\";\n" +
+        "    };\n" +
+        "\n" +
+        "On Ubuntu, when using the OpenJDK, this file is located at /usr/lib/jvm/java-6-openjdk/jre/lib/security/java.policy.\n" +
+        "\n" +
+        "You will still be asked if you want to allow the applet to connect to the remote site, so this\n" +
+        "change will have no significant impact on the security of your Java installation.  For more\n" +
+        "information on Java Security Policies, see:\n" +
+        "\n" +
+        "    http://java.sun.com/developer/onlineTraining/Programming/JDCBook/appA.html";
+
     protected void loadExampleProgram(int index) {
         setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        initialState = language.loadExampleProgram(index);
-        applyCurrentlySelectedOptions(initialState);
-        reset();
+        try {
+            initialState = language.loadExampleProgram(index);
+            applyCurrentlySelectedOptions(initialState);
+            reset();
+        } catch (AccessControlException e) {
+            System.out.println(e);
+            if (e.toString().indexOf("getProtectionDomain") > 0) {
+                displayModalMessage(oopsMessage, false);
+            }
+            // XXX otherwise display the exception itself?
+        }
         setCursor(null);
     }
 
@@ -656,7 +684,7 @@ public class ContentPane extends JPanel {
             String[] pair = properties[i];
             x += pair[0] + "\n" + pair[1] + "\n\n";
         }
-        displayModalMessage(x);
+        displayModalMessage(x, true);
     }
 
     protected void showEditor() {
@@ -675,7 +703,7 @@ public class ContentPane extends JPanel {
         this.setVisible(true);
     }
 
-    protected void displayModalMessage(String message) {
+    protected void displayModalMessage(String message, boolean showEsowikiButton) {
         this.setVisible(false);
         interiorPanel.remove(buttonPanel);
         if (languageComponent != null) {
@@ -683,6 +711,7 @@ public class ContentPane extends JPanel {
         }
         interiorPanel.add(aboutPanel, BorderLayout.CENTER);
         aboutPanel.setVisible(true);
+        buttonEsowiki.setVisible(showEsowikiButton);
         aboutBox.setText(message);
         languageMenu.setEnabled(false);
         examplesMenu.setEnabled(false);

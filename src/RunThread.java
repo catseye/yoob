@@ -109,7 +109,7 @@ public class RunThread extends Thread {
                     cp.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                     tc.catseye.yoob.State state = loader.getState(l.name);
                     if (state == null) {
-                        cp.displayModalMessage("Couldn't load classes for language '" + l.name + "'");
+                        cp.displayModalMessage("Couldn't load classes for language '" + l.name + "'", false);
                     } else {
                         cp.selectLanguage(state.getLanguage());
                     }
