@@ -106,7 +106,8 @@ public class ContentPane extends JPanel {
     private JPanel buttonPanel;
     private final JApplet plet;
 
-    private JButton buttonReset, buttonStep, buttonRun, buttonStop, buttonEdit;
+    private JButton buttonReset, buttonStop, buttonEdit;
+    private JButton buttonStep, buttonWalk, buttonRun;
     private JButton buttonAbout;
     private JButton buttonEsowiki;
     private JSlider sliderRunSpeed;
@@ -216,6 +217,16 @@ public class ContentPane extends JPanel {
         buttonStep.setToolTipText("Execute one step of the program.");
         buttonStep.setEnabled(false);
 
+        buttonWalk = new JButton("Walk");
+        buttonWalk.setMnemonic(KeyEvent.VK_W);
+        buttonWalk.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                walk();
+            }
+        });
+        buttonWalk.setToolTipText("Walk through (animate the execution of) the program.");
+        buttonWalk.setEnabled(false);
+
         buttonRun = new JButton("Run");
         buttonRun.setMnemonic(KeyEvent.VK_R);
         buttonRun.addActionListener(new ActionListener() {
@@ -223,7 +234,7 @@ public class ContentPane extends JPanel {
                 run();
             }
         });
-        buttonRun.setToolTipText("Run the program.");
+        buttonRun.setToolTipText("Run the program (full speed, no animation.)");
         buttonRun.setEnabled(false);
 
         buttonStop = new JButton("Stop");
@@ -312,6 +323,7 @@ public class ContentPane extends JPanel {
         buttonPanel.add(buttonEdit);
         buttonPanel.add(buttonReset);
         buttonPanel.add(buttonStep);
+        buttonPanel.add(buttonWalk);
         buttonPanel.add(buttonRun);
         buttonPanel.add(buttonStop);
         buttonPanel.add(sliderRunSpeed);
@@ -536,6 +548,7 @@ public class ContentPane extends JPanel {
         // We just selected a language, but we don't have a program yet
         buttonReset.setEnabled(false);
         buttonStep.setEnabled(false);
+        buttonWalk.setEnabled(false);
         buttonRun.setEnabled(false);
         buttonEdit.setEnabled(false);
         buttonAbout.setText("About " + language.getName() + "...");
@@ -575,7 +588,19 @@ public class ContentPane extends JPanel {
         }
     }
 
+    protected void walk() {
+        disableButtonsPerRun();
+        runThread.setTurbo(false);
+        runThread.proceed();
+    }
+
     protected void run() {
+        disableButtonsPerRun();
+        runThread.setTurbo(true);
+        runThread.proceed();
+    }
+
+    protected void disableButtonsPerRun() {
         languageMenu.setEnabled(false);
         examplesMenu.setEnabled(false);
         optionsMenu.setEnabled(false);
@@ -583,10 +608,10 @@ public class ContentPane extends JPanel {
         buttonEdit.setEnabled(false);
         buttonReset.setEnabled(false);
         buttonStep.setEnabled(false);
+        buttonWalk.setEnabled(false);
         buttonRun.setEnabled(false);
         buttonAbout.setEnabled(false);
         buttonStop.setEnabled(true);
-        runThread.proceed();
     }
 
     protected void stop() {
@@ -600,6 +625,7 @@ public class ContentPane extends JPanel {
         buttonAbout.setEnabled(true);
         if (!currentState.hasHalted()) {
             buttonStep.setEnabled(true);
+            buttonWalk.setEnabled(true);
             buttonRun.setEnabled(true);
         }
         runThread.halt();
@@ -617,6 +643,7 @@ public class ContentPane extends JPanel {
         refreshDepictions();
         if (currentState.hasHalted()) {
             buttonStep.setEnabled(false);
+            buttonWalk.setEnabled(false);
             buttonRun.setEnabled(false);
         }
         if (currentState.needsInput()) {
@@ -630,6 +657,7 @@ public class ContentPane extends JPanel {
     protected void reset() {
         currentState = initialState.clone();
         buttonEdit.setEnabled(true);
+        buttonWalk.setEnabled(true);
         buttonRun.setEnabled(true);
         buttonStep.setEnabled(true);
         buttonStop.setEnabled(false);

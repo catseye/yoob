@@ -38,11 +38,12 @@ public class RunThread extends Thread {
     private ContentPane cp;
     private EsolangLoader loader;
     private int cyclesPerSecond;
-    private boolean proceed;
+    private boolean proceed, turbo;
 
     public RunThread(ContentPane cp, int cyclesPerSecond, EsolangLoader loader) {
         this.cp = cp;
         this.loader = loader;
+        this.turbo = false;
         setRunSpeed(cyclesPerSecond);
         mailbox = new SynchronousQueue<RunThreadMessage>();
     }
@@ -53,6 +54,11 @@ public class RunThread extends Thread {
         } catch (InterruptedException e) {
             System.out.println("interrupted!");
         }
+    }
+
+    public void setTurbo(boolean turbo) {
+        // XXX maybe this should be a message?  I don't remember
+        this.turbo = turbo;
     }
 
     public void proceed() {
@@ -80,7 +86,14 @@ public class RunThread extends Thread {
         long delay;
         for (;;) {
             if (proceed) {
-                if (cyclesPerSecond > 0) {
+                if (turbo) {
+                    int counter = 100;
+                    while (proceed && counter > 0) {
+                        proceed = cp.step();
+                        counter++;
+                    }
+                    delay = 0;
+                } else if (cyclesPerSecond > 0) {
                     delay = (long)(1000 / cyclesPerSecond);
                     proceed = cp.step();
                 } else {
