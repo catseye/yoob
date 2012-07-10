@@ -33,6 +33,14 @@ class LoadMessage extends RunThreadMessage {
     }
 }
 
+// probably not really necessary, but it's what we have now
+class SetTurboMessage extends RunThreadMessage {
+    public boolean turbo;
+    public SetTurboMessage(boolean turbo) {
+        this.turbo = turbo;
+    }
+}
+
 public class RunThread extends Thread {
     private SynchronousQueue<RunThreadMessage> mailbox;
     private ContentPane cp;
@@ -57,8 +65,11 @@ public class RunThread extends Thread {
     }
 
     public void setTurbo(boolean turbo) {
-        // XXX maybe this should be a message?  I don't remember
-        this.turbo = turbo;
+        try {
+            mailbox.put(new SetTurboMessage(turbo));
+        } catch (InterruptedException e) {
+            System.out.println("interrupted!");
+        }
     }
 
     public void proceed() {
@@ -87,10 +98,10 @@ public class RunThread extends Thread {
         for (;;) {
             if (proceed) {
                 if (turbo) {
-                    int counter = 100;
+                    int counter = 512;
                     while (proceed && counter > 0) {
                         proceed = cp.step();
-                        counter++;
+                        counter--;
                     }
                     delay = 0;
                 } else if (cyclesPerSecond > 0) {
@@ -114,6 +125,7 @@ public class RunThread extends Thread {
             if (message != null) {
                 if (message instanceof HaltMessage) {
                     proceed = false;
+                    turbo = false;
                 } else if (message instanceof ProceedMessage) {
                     proceed = true;
                 } else if (message instanceof LoadMessage) {
@@ -127,6 +139,9 @@ public class RunThread extends Thread {
                         cp.selectLanguage(state.getLanguage());
                     }
                     cp.setCursor(null);
+                } else if (message instanceof SetTurboMessage) {
+                    SetTurboMessage t = (SetTurboMessage)message;
+                    this.turbo = t.turbo;
                 }
             }
         }
