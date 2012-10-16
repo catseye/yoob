@@ -6,6 +6,8 @@ It aims to make it easy for a user to experiment with a large number of
 esolangs with a minimal install burden (i.e. in a Java applet), and to make
 it easy for designers to rapidly implement and showcase their esolangs.
 
+See also: [yoob.js](https://github.com/catseye/yoob.js).
+
 Features
 --------
 
