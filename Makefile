@@ -296,6 +296,10 @@ $(CDIR)/wunnel/WunnelState.class: src/lang/WunnelState.java
 clean:
 	rm -rf $(CDIR)/*.class
 	rm -rf $(CDIR)/*/*.class
+	rm -f yoob.jar
 
 test: langs
 	$(JAVA) -cp "$(CLASSPATH)" tc.catseye.yoob.GUI -c "$(ESOLANGS)"
+
+yoob.jar: langs
+	cd bin && jar cvf ../$@ tc/catseye/yoob/*.class tc/catseye/yoob/*/*.class
