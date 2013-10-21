@@ -83,9 +83,12 @@ LANGCLASSES=$(CDIR)/ale/AleState.class \
 
 all: yoob langs
 
-yoob: $(CLASSES)
+yoob: $(CDIR) $(CLASSES)
 
 langs: yoob $(LANGCLASSES)
+
+$(CDIR):
+	mkdir -p $(CDIR)
 
 $(CDIR)/Element.class: src/Element.java
 	$(JAVAC) $(JFLAGS) -cp bin -d bin src/Element.java
