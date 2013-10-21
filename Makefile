@@ -4,10 +4,8 @@
 JAVAC?=javac
 JAVA?=java
 JFLAGS?=-Xlint:deprecation -Xlint:unchecked
-PATHSEP?=:
 
-YOOBDIR?=.
-CLASSPATH?=bin$(PATHSEP)$(YOOBDIR)/bin
+CLASSPATH=bin
 
 CDIR=bin/tc/catseye/yoob
 
