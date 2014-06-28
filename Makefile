@@ -77,7 +77,9 @@ LANGCLASSES=$(CDIR)/ale/AleState.class \
         $(CDIR)/snusp/SNUSPState.class \
         $(CDIR)/twoill/TwoIllState.class \
         $(CDIR)/twol/TwoLState.class \
-        $(CDIR)/wunnel/WunnelState.class
+        $(CDIR)/worb/WorbState.class \
+        $(CDIR)/wunnel/WunnelState.class \
+        $(CDIR)/ypsilax/YpsilaxState.class
 
 all: yoob langs
 
@@ -235,7 +237,9 @@ ESOLANGS?=tc.catseye.yoob.ale.AleState/Ale \
           tc.catseye.yoob.snusp.SNUSPState/SNUSP \
           tc.catseye.yoob.twoill.TwoIllState/2-ill \
           tc.catseye.yoob.twol.TwoLState/2L \
-          tc.catseye.yoob.wunnel.WunnelState/Wunnel
+          tc.catseye.yoob.worb.WorbState/noit-o-mnain-worb \
+          tc.catseye.yoob.wunnel.WunnelState/Wunnel \
+          tc.catseye.yoob.ypsilax.YpsilaxState/Ypsilax
 
 $(CDIR)/ale/AleState.class: src/lang/AleState.java
 	$(JAVAC) $(JFLAGS) -cp "$(CLASSPATH)" -d bin src/lang/AleState.java
@@ -291,8 +295,14 @@ $(CDIR)/twoill/TwoIllState.class: src/lang/TwoIllState.java
 $(CDIR)/twol/TwoLState.class: src/lang/TwoLState.java
 	$(JAVAC) $(JFLAGS) -cp "$(CLASSPATH)" -d bin src/lang/TwoLState.java
 
+$(CDIR)/worb/WorbState.class: src/lang/WorbState.java
+	$(JAVAC) $(JFLAGS) -cp "$(CLASSPATH)" -d bin src/lang/WorbState.java
+
 $(CDIR)/wunnel/WunnelState.class: src/lang/WunnelState.java
 	$(JAVAC) $(JFLAGS) -cp "$(CLASSPATH)" -d bin src/lang/WunnelState.java
+
+$(CDIR)/ypsilax/YpsilaxState.class: src/lang/YpsilaxState.java
+	$(JAVAC) $(JFLAGS) -cp "$(CLASSPATH)" -d bin src/lang/YpsilaxState.java
 
 clean:
 	rm -rf $(CDIR)/*.class
