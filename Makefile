@@ -4,6 +4,7 @@
 JAVAC?=javac
 JAVA?=java
 JFLAGS?=-Xlint:deprecation -Xlint:unchecked
+EXTRAJARFILES?=
 
 CLASSPATH=bin
 
@@ -313,4 +314,4 @@ test: langs
 	$(JAVA) -cp "$(CLASSPATH)" tc.catseye.yoob.GUI -c "$(ESOLANGS)"
 
 yoob.jar: langs
-	cd bin && jar cvf ../$@ tc/catseye/*/*.class tc/catseye/yoob/*/*.class
+	cd bin && jar cvfm ../$@ ../manifest.txt tc/catseye/*/*.class tc/catseye/yoob/*/*.class $(EXTRAJARFILES)

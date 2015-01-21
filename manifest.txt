@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Application-Name: yoob
+Specification-Title: yoob
+Specification-Version: 1.0.0
+Specification-Vendor: Cat's Eye Technologies
+Implementation-Title: yoob
+Implementation-Version: 1.0.0
+Implementation-Vendor: Cat's Eye Technologies
+Main-Class: tc.catseye.yoob.Applet
+Permissions: sandbox
