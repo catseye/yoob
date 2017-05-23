@@ -1,10 +1,10 @@
 /*
- * tc.catseye.worb.YpsilaxState -- Ypsilax for yoob
+ * tc.catseye.yoob.YpsilaxState -- Ypsilax for yoob
  * The source code in this file has been placed into the public domain.
  */
 
 /*
- * A tc.catseye.worb.YpsilaxState tries to implement the semantics of the
+ * A tc.catseye.yoob.YpsilaxState tries to implement the semantics of the
  * Ypsilax grid-rewriter, for running under the yoob framework.
  */
 

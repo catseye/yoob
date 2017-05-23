@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0+" codebase="http://catseye.tc/applets" href="yoob_webstart.jnlp">
+  <information>
+    <title>yoob</title>
+    <vendor>Cats Eye Technologies</vendor>
+  </information>
+  <resources>
+      <j2se version="1.7+" href="http://java.sun.com/products/autodl/j2se" />
+      <jar href="yoob.jar" main="true" />
+  </resources>
+  <application-desc name="yoob" main-class="tc.catseye.yoob.GUI">
+    <argument>-c</argument>
+    <argument>tc.catseye.yoob.ale.AleState/Ale
+      tc.catseye.yoob.backflip.BackFlipState/BackFlip
+      tc.catseye.yoob.befunge93.Befunge93State/Befunge-93
+      tc.catseye.yoob.black.BlackState/Black
+      tc.catseye.yoob.bf.BrainfuckState/brainfuck
+      tc.catseye.yoob.circute.CircuteState/Circute
+      tc.catseye.yoob.etcha.EtchaState/Etcha
+      tc.catseye.yoob.gemooy.GemooyState/Gemooy
+      tc.catseye.yoob.lnusp.LNUSPState/LNUSP
+      tc.catseye.yoob.onela.OneLaState/1L_a
+      tc.catseye.yoob.onelaoi.OneLAOIState/1L_AOI
+      tc.catseye.yoob.path.PATHState/PATH
+      tc.catseye.yoob.qdeql.QdeqlState/Qdeql
+      tc.catseye.yoob.sceql.SceqlState/Sceql
+      tc.catseye.yoob.smetana.SMETANAState/SMETANA
+      tc.catseye.yoob.snusp.SNUSPState/SNUSP
+      tc.catseye.yoob.twoill.TwoIllState/2-ill
+      tc.catseye.yoob.twol.TwoLState/2L
+      tc.catseye.yoob.worb.WorbState/noit-o-mnain-worb
+      tc.catseye.yoob.wunnel.WunnelState/Wunnel
+      tc.catseye.yoob.ypsilax.YpsilaxState/Ypsilax</argument>
+  </application-desc>
+</jnlp>
+

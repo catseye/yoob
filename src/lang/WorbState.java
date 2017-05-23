@@ -1,10 +1,10 @@
 /*
- * tc.catseye.worb.WorbState -- noit o'mnain worb for yoob
+ * tc.catseye.yoob.WorbState -- noit o'mnain worb for yoob
  * The source code in this file has been placed into the public domain.
  */
 
 /*
- * A tc.catseye.worb.WorbState implements the semantics of the
+ * A tc.catseye.yoob.WorbState implements the semantics of the
  * noit o'mnain worb automaton under the yoob framework.
  */
 
