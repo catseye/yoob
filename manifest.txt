@@ -4,7 +4,7 @@ Specification-Title: yoob
 Specification-Version: 0.3.20140819
 Specification-Vendor: Cat's Eye Technologies
 Implementation-Title: yoob
-Implementation-Version: 0.3.20140819
+Implementation-Version: 0.3.20181009
 Implementation-Vendor: Cat's Eye Technologies
-Main-Class: tc.catseye.yoob.Applet
+Main-Class: tc.catseye.yoob.GUI
 Permissions: sandbox
