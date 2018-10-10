@@ -76,6 +76,160 @@ class Befunge93 implements Language {
             "        >0\" eht si \"2   ^  >,^\n",
             cpProperties
         ));
+        examples.add(new ExampleProgram(
+            "easm2.bf",
+            ">801p          11v\n" +
+            " v\"love\"      < >+v\n" +
+            "#v\"power\"    <  1$:\n" +
+            " v\"strength\" ?^# <0\n" +
+            " v\"success\"  ?v g 1\n" +
+            " v\"agony\"    <  1 p\n" +
+            " v\"beauty\"    < 0 9\n" +
+            "            v ,<p 1\n" +
+            " >\" eht si \">: |g +\n" +
+            " >\" fo \"> v    <1 -\n" +
+            " >25*\".\"^ >\" \"10^^_v\n" +
+            "^        p91p81:\">\"<\n" +
+            "\n",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "cascade.bf",
+            ">011p013p>11g13gg:84*`#v_84*>11g13g4+p$v\n" +
+            "#     13p^p11         <>    ^        >  \n" +
+            "          v                            <\n" +
+            "#     13pv>11g1+:85*-#^_011p13g1+:4%#^_",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "fact.bf",
+            "                                    v\n" +
+            ">v\"Please enter a number (1-16) : \"0<\n" +
+            ",:             >$*99g1-:99p#v_.25*,@\n" +
+            "^_&:1-99p>:1-:!|10          < \n" +
+            "         ^     <",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "hwii.bf",
+            "v       <\n" +
+            ">0#v # \"Hello, World!\" # v#0  <\n" +
+            "  >v    #               >v\n" +
+            "  ,:                    ,:\n" +
+            "  ^_25*,^               ^_25*,^",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "maze.bf",
+            " v    <\n" +
+            ">?\"/\",^\n" +
+            " >\"\\\",^",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "numer.bf",
+            "000p>~:25*-!#v_\"a\"-1+00g+00p> 00g9`#v_v\n" +
+            "        @.g00<  vp00+%*52g00 /*52g00<\n" +
+            "    ^           >#          ^#        <",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "pangram.bf",
+            "v             <    >\"a\"-v\n" +
+            "             >:\"`\"`|    >\"<\"\\5pv\n" +
+            "       >:\"@\"`|#    >\"A\"-^\n" +
+            ">~:91+-|     >^                <\n" +
+            "       >                  v\n" +
+            "vvvvvvvvvvvvvvvvvvvvvvvvvv< v\"yes\"\n" +
+            "v<<<<<<<<<<<<<<<<<<<<<<<<<  ,\n" +
+            ">\"on\"                       >,,91+,@\n",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "pascserp.bf",
+            "58*00p010p>58*00g-|>0g#<1-10gg00g10v\n" +
+            "v98p00:+1g00< v67<>    >1    v+g-1g<\n" +
+            ">*7+-! #v_v>^^<  |%2pg0 1g00:<\n" +
+            "v p00*58<  ^,<^48<>10g!|@\n" +
+            ">52*,10g1+ :1 0p83 *- ! |\n" +
+            "          v             <",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "rand.bf",
+            "vv  <      <\n" +
+            "    2      \n" +
+            "    ^  v<\n" +
+            " v1<?>3v4\n" +
+            "    ^   ^\n" +
+            ">  >?>  ?>5^\n" +
+            "    v   v\n" +
+            " v9<?>7v6\n" +
+            "    v  v<\n" +
+            "    8\n" +
+            " .  >  >   ^\n" +
+            "^<",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "rand3.bf",
+            "7   $^>91+v\n" +
+            "?95+vv?94+vv\n" +
+            ">96+v9>93+v\n" +
+            "# +  >#  v<#\n" +
+            " >>>>  >>>.@\n" +
+            " 123 >^456#9\n" +
+            " ^?^#?#^?^ 7\n" +
+            "^ ## <  8  +\n" +
+            "> > ^#  < ^<",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "rand6.bf",
+            "?<>>?<8>\n" +
+            ">>?<>>?<\n" +
+            "  2@4.+<\n" +
+            "1+ + +<^",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "testbrdg.bf",
+            ">>>>v\n" +
+            "@0.v>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>#\n" +
+            "#<<<                                                                        @.1@\n",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "testmodu.bf",
+            "v The original implementation of Befunge-93 was in ANSI C (a.k.a C89).\n" +
+            "v The description of Befunge-93 did not describe how modulo should be\n" +
+            "v implemented for a negative modulus -- it relied on ANSI C's semantics.\n" +
+            "v\n" +
+            "v Unfortunately, ANSI C did not define negative modulus either.\n" +
+            "v\n" +
+            "v So this program tests what your Befunge-93 implementation does for\n" +
+            "v modulo by negative numbers.  If it outputs:\n" +
+            "v\n" +
+            "v  1 -1 : result has same sign as the dividend (like C99)\n" +
+            "v -2  2 : result has same sign as the divisor  (like Python)\n" +
+            "v\n" +
+            "v Of course, since it is undefined, other results are possible.\n" +
+            "v\n" +
+            ">703-%.07-3%.@\n",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "testpfcl.bf",
+            "000p>00g1+01p01g00g`#v_00g.000p>00g1-01p00g01g`#v_00g.@\n" +
+            "    ^p00+1g00        <         ^p00-1g00        <\n",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "toupper.bf",
+            "v,         <         <       <\n" +
+            ">~:\"a\"1-`!#^_:\"z\"1+`#^_\"aA\"--^",
+            cpProperties
+        ));
 
     }
       
