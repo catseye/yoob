@@ -46,23 +46,37 @@ class Befunge93 implements Language {
     }
 
     private void loadExamples() {
-        if (examples == null) {
-            examples = new ArrayList<ExampleProgram>();
-            String[][] properties = {
-                {"Author", "Chris Pressey"},
-                {"License", "Public Domain"},
-            };
-            try {
-                examples.add(new ExampleProgram(
-                    "hello, world", new URL("http://catseye.tc/projects/befunge93/eg/hello.bf"), properties
-                ));
-                examples.add(new ExampleProgram(
-                    "enigmatic aphorisms", new URL("http://catseye.tc/projects/befunge93/eg/ea.bf"), properties
-                ));
-            } catch (MalformedURLException e) {
-                // hmm.  That's too bad.
-            }
-        }
+        if (examples != null) return;
+
+        examples = new ArrayList<ExampleProgram>();
+        String[][] cpProperties = {
+            {"Author", "Chris Pressey"},
+            {"License", "Public Domain"},
+        };
+
+        examples.add(new ExampleProgram(
+            "hello, world",
+            "                 v\n" +
+            ">v\"Hello world!\"0<\n" +
+            ",:                \n" +
+            "^_25*,@           \n",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "enigmatic aphorisms",
+            "100p            v\n" +
+            " v\"love\"0     <\n" +
+            " v\"power\"0   <\n" +
+            " v\"strength\"0?^#<            <\n" +
+            " v\"success\"0 ?v\n" +
+            " v\"agony\"0   <\n" +
+            ">v\"beauty\"0   <>025*\".\" 1v v_^\n" +
+            ",:      >00g2- |        v< #:\n" +
+            "^_,00g1-|      >0\" fo \"3>00p^<\n" +
+            "        >0\" eht si \"2   ^  >,^\n",
+            cpProperties
+        ));
+
     }
       
     public List<String> exampleProgramNames() {
