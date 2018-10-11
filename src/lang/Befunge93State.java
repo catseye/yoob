@@ -55,15 +55,29 @@ class Befunge93 implements Language {
         };
 
         examples.add(new ExampleProgram(
-            "hello, world",
-            "                 v\n" +
-            ">v\"Hello world!\"0<\n" +
-            ",:                \n" +
-            "^_25*,@           \n",
+            "cascade.bf",
+            ">011p013p>11g13gg:84*`#v_84*>11g13g4+p$v\n" +
+            "#     13p^p11         <>    ^        >  \n" +
+            "          v                            <\n" +
+            "#     13pv>11g1+:85*-#^_011p13g1+:4%#^_",
             cpProperties
         ));
         examples.add(new ExampleProgram(
-            "enigmatic aphorisms",
+            "drx.bf",
+            "#v       #<                                      v\n" +
+            ">v\"Hello... I'm Dr. X.  How do you feel today? \"0<\n" +
+            ",:        #\n" +
+            "^_$v     <\n" +
+            "   >~25*-|                                          > v\n" +
+            "         >                                       0#v?v\n" +
+            "          ^\"Do your friends find this reasonable? \"<\n" +
+            "          ^\"How long have you felt this way? \"      <\n" +
+            "          ^\"How do you feel about that? \"            <\n" +
+            "          ^\"Are you disturbed by this? \"              <",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "ea.bf",
             "100p            v\n" +
             " v\"love\"0     <\n" +
             " v\"power\"0   <\n" +
@@ -73,7 +87,7 @@ class Befunge93 implements Language {
             ">v\"beauty\"0   <>025*\".\" 1v v_^\n" +
             ",:      >00g2- |        v< #:\n" +
             "^_,00g1-|      >0\" fo \"3>00p^<\n" +
-            "        >0\" eht si \"2   ^  >,^\n",
+            "        >0\" eht si \"2   ^  >,^",
             cpProperties
         ));
         examples.add(new ExampleProgram(
@@ -94,20 +108,28 @@ class Befunge93 implements Language {
             cpProperties
         ));
         examples.add(new ExampleProgram(
-            "cascade.bf",
-            ">011p013p>11g13gg:84*`#v_84*>11g13g4+p$v\n" +
-            "#     13p^p11         <>    ^        >  \n" +
-            "          v                            <\n" +
-            "#     13pv>11g1+:85*-#^_011p13g1+:4%#^_",
-            cpProperties
-        ));
-        examples.add(new ExampleProgram(
             "fact.bf",
             "                                    v\n" +
             ">v\"Please enter a number (1-16) : \"0<\n" +
             ",:             >$*99g1-:99p#v_.25*,@\n" +
             "^_&:1-99p>:1-:!|10          < \n" +
             "         ^     <",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "hello.bf",
+            "                 v\n" +
+            ">v\"Hello world!\"0<\n" +
+            ",:\n" +
+            "^_25*,@",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "hex.bf",
+            "~:25*-#v_@      >  >,\" \",\n" +
+            "v      < >25*-\"A\"+v^+\"A\"-*52<\n" +
+            ">:82*/:9`|      \" >,:82*%:9`|        \n" +
+            "         >\"0\"+ #^ ^#    +\"0\"<",
             cpProperties
         ));
         examples.add(new ExampleProgram(
@@ -190,6 +212,34 @@ class Befunge93 implements Language {
             ">>?<>>?<\n" +
             "  2@4.+<\n" +
             "1+ + +<^",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "robot.bf",
+            "vv_v#:\"*********\"*25<           01 = x coord\n" +
+            "8,:  >              ^           02 = y coord\n" +
+            "0>^  ^\"*     * *\"*25<\n" +
+            "1    >              ^\n" +
+            "p    ^\"* *** * *\"*25<\n" +
+            "2    >              ^\n" +
+            "0    ^\"* *     *\"*25<\n" +
+            "2    >              ^\n" +
+            "p    ^\"* * *   *\"*25<\n" +
+            "\"    >              ^       \n" +
+            "O    ^\"* ***** *\"*25<       >,v\n" +
+            "\"    >              ^       |:<\"You hit a wall! Game over!\"0<\n" +
+            "0    ^\"*     * *\"*25<       >25*,@                          |-*84gg20g10<\n" +
+            "1    >              ^v ,*62                       pg20g10\"O\"<  <       \n" +
+            "g    ^\"*   *   *\"*25<                                  >00g\"w\"-|\n" +
+            "0    >              ^                          >00g\"e\"-|       >01g1-01p^\n" +
+            "2    ^\"*********\"*250<                 >00g\"s\"-|       >01g1+01p        ^\n" +
+            "g  > \" \"01g02gp         \"?\",~~$:00p\"n\"-|       >02g2+02p                ^\n" +
+            ">p              62*, ^                 >02g2-02p                        ^",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "selflis2.bf",
+            "\">:#,_66*2-,@This prints itself out backwards......  but it has to be 80x1 cells",
             cpProperties
         ));
         examples.add(new ExampleProgram(
