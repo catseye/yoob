@@ -46,23 +46,269 @@ class Befunge93 implements Language {
     }
 
     private void loadExamples() {
-        if (examples == null) {
-            examples = new ArrayList<ExampleProgram>();
-            String[][] properties = {
-                {"Author", "Chris Pressey"},
-                {"License", "Public Domain"},
-            };
-            try {
-                examples.add(new ExampleProgram(
-                    "hello, world", new URL("http://catseye.tc/projects/befunge93/eg/hello.bf"), properties
-                ));
-                examples.add(new ExampleProgram(
-                    "enigmatic aphorisms", new URL("http://catseye.tc/projects/befunge93/eg/ea.bf"), properties
-                ));
-            } catch (MalformedURLException e) {
-                // hmm.  That's too bad.
-            }
-        }
+        if (examples != null) return;
+
+        examples = new ArrayList<ExampleProgram>();
+        String[][] cpProperties = {
+            {"Author", "Chris Pressey"},
+            {"License", "Public Domain"},
+        };
+
+        examples.add(new ExampleProgram(
+            "cascade.bf",
+            ">011p013p>11g13gg:84*`#v_84*>11g13g4+p$v\n" +
+            "#     13p^p11         <>    ^        >  \n" +
+            "          v                            <\n" +
+            "#     13pv>11g1+:85*-#^_011p13g1+:4%#^_",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "drx.bf",
+            "#v       #<                                      v\n" +
+            ">v\"Hello... I'm Dr. X.  How do you feel today? \"0<\n" +
+            ",:        #\n" +
+            "^_$v     <\n" +
+            "   >~25*-|                                          > v\n" +
+            "         >                                       0#v?v\n" +
+            "          ^\"Do your friends find this reasonable? \"<\n" +
+            "          ^\"How long have you felt this way? \"      <\n" +
+            "          ^\"How do you feel about that? \"            <\n" +
+            "          ^\"Are you disturbed by this? \"              <",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "ea.bf",
+            "100p            v\n" +
+            " v\"love\"0     <\n" +
+            " v\"power\"0   <\n" +
+            " v\"strength\"0?^#<            <\n" +
+            " v\"success\"0 ?v\n" +
+            " v\"agony\"0   <\n" +
+            ">v\"beauty\"0   <>025*\".\" 1v v_^\n" +
+            ",:      >00g2- |        v< #:\n" +
+            "^_,00g1-|      >0\" fo \"3>00p^<\n" +
+            "        >0\" eht si \"2   ^  >,^",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "easm2.bf",
+            ">801p          11v\n" +
+            " v\"love\"      < >+v\n" +
+            "#v\"power\"    <  1$:\n" +
+            " v\"strength\" ?^# <0\n" +
+            " v\"success\"  ?v g 1\n" +
+            " v\"agony\"    <  1 p\n" +
+            " v\"beauty\"    < 0 9\n" +
+            "            v ,<p 1\n" +
+            " >\" eht si \">: |g +\n" +
+            " >\" fo \"> v    <1 -\n" +
+            " >25*\".\"^ >\" \"10^^_v\n" +
+            "^        p91p81:\">\"<\n" +
+            "\n",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "eterlan.bf",
+            "5 52** 52** 52** 52**             1- 0v0                                     <\n" +
+            ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>v>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>v  -\n" +
+            "^                                                                         v  1\n" +
+            "^    \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"    v  |\n" +
+            "^    X   Y   X   Y   X   Y   X   Y   I   X   Y   X   Y   X   Y   X   Y    v  @\n" +
+            "^    \"   \"   \"   \"   \"   \"   \"   \"   \"#  \"   \"   \"   \"   \"   \"   \"   \"    v  #\n" +
+            "^ \"N\"?\"S\"?\"E\"?\"W\"?\"U\"?\"D\"?\"L\"?\"R\"?\"P\"?\"G\"?\"C\"?\"C\"?\"F\"?\"O\"?\"U\"?\"R\"?\"A\"?\"M\" v  :\n" +
+            "^    \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"    v  $\n" +
+            "^    J   U   B   I   L   A   N   T   B   E   F   U   N   G   I   N   G    v >^\n" +
+            "^    \"   \"   \"   \"   \"   \"   \"   \"   \"#  \"   \"   \"   \"   \"   \"   \"   \"    v ,,\n" +
+            "^ \"H\"?\"E\"?\"Y\"?\"M\"?\"Y\"?\"A\"?\"R\"?\"C\"?\"H\"?\"I\"?\"V\"?\"E\"?\"M\"?\"U\"?\"S\"?\"T\"?\"B\"?\"E\" v ,*\n" +
+            "^    \"   \"   \"   \"   \"   \"   \"   \"   v   \"   \"   \"   \"   \"   \"   \"   \"    v :4\n" +
+            "^    W   I   N   N   I   P   E   G  >v<  M   A   N   I   T   O   B   A    v *8\n" +
+            "^    \"   \"   \"   \"   \"   \"   \"   \"   v   \"   \"   \"   \"   \"   \"   \"   \"    v 2 \n" +
+            "^ \"C\"?\"O\"?\"R\"?\"R\"?\"U\"?\"P\"?\"T\"?\"X\"?\"T\"?\"H\"?\"E\"?\"S\"?\"E\"?\"F\"?\"I\"?\"L\"?\"E\"?\"S\" v 5 \n" +
+            "^    \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"    v   \n" +
+            "^    S   E   P   T   E   M   B   E   R   M   C   M   X   C   I   I   I    v>?^\n" +
+            "^    \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"    v ^ \n" +
+            "^ \"A\"?\"L\"?\"L\"?\"L\"?\"O\"?\"O\"?\"K\"?\"L\"?\"I\"?\"K\"?\"E\"?\"G\"?\"A\"?\"R\"?\"B\"?\"A\"?\"G\"?\"E\" v v<\n" +
+            "^    \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"    v #|\n" +
+            "^    X   Y   X   Y   X   Y   X   Y   O   X   Y   X   Y   X   Y   X   Y    v ^<  \n" +
+            "^    \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"   \"    v ,#  \n" +
+            "^                                                                         v  :  \n" +
+            "^<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>^\n",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "fact.bf",
+            "                                    v\n" +
+            ">v\"Please enter a number (1-16) : \"0<\n" +
+            ",:             >$*99g1-:99p#v_.25*,@\n" +
+            "^_&:1-99p>:1-:!|10          < \n" +
+            "         ^     <",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "hello.bf",
+            "                 v\n" +
+            ">v\"Hello world!\"0<\n" +
+            ",:\n" +
+            "^_25*,@",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "hex.bf",
+            "~:25*-#v_@      >  >,\" \",\n" +
+            "v      < >25*-\"A\"+v^+\"A\"-*52<\n" +
+            ">:82*/:9`|      \" >,:82*%:9`|        \n" +
+            "         >\"0\"+ #^ ^#    +\"0\"<",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "hwii.bf",
+            "v       <\n" +
+            ">0#v # \"Hello, World!\" # v#0  <\n" +
+            "  >v    #               >v\n" +
+            "  ,:                    ,:\n" +
+            "  ^_25*,^               ^_25*,^",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "maze.bf",
+            " v    <\n" +
+            ">?\"/\",^\n" +
+            " >\"\\\",^",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "numer.bf",
+            "000p>~:25*-!#v_\"a\"-1+00g+00p> 00g9`#v_v\n" +
+            "        @.g00<  vp00+%*52g00 /*52g00<\n" +
+            "    ^           >#          ^#        <",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "pangram.bf",
+            "v             <    >\"a\"-v\n" +
+            "             >:\"`\"`|    >\"<\"\\5pv\n" +
+            "       >:\"@\"`|#    >\"A\"-^\n" +
+            ">~:91+-|     >^                <\n" +
+            "       >                  v\n" +
+            "vvvvvvvvvvvvvvvvvvvvvvvvvv< v\"yes\"\n" +
+            "v<<<<<<<<<<<<<<<<<<<<<<<<<  ,\n" +
+            ">\"on\"                       >,,91+,@\n",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "pascserp.bf",
+            "58*00p010p>58*00g-|>0g#<1-10gg00g10v\n" +
+            "v98p00:+1g00< v67<>    >1    v+g-1g<\n" +
+            ">*7+-! #v_v>^^<  |%2pg0 1g00:<\n" +
+            "v p00*58<  ^,<^48<>10g!|@\n" +
+            ">52*,10g1+ :1 0p83 *- ! |\n" +
+            "          v             <",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "rand.bf",
+            "vv  <      <\n" +
+            "    2      \n" +
+            "    ^  v<\n" +
+            " v1<?>3v4\n" +
+            "    ^   ^\n" +
+            ">  >?>  ?>5^\n" +
+            "    v   v\n" +
+            " v9<?>7v6\n" +
+            "    v  v<\n" +
+            "    8\n" +
+            " .  >  >   ^\n" +
+            "^<",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "rand3.bf",
+            "7   $^>91+v\n" +
+            "?95+vv?94+vv\n" +
+            ">96+v9>93+v\n" +
+            "# +  >#  v<#\n" +
+            " >>>>  >>>.@\n" +
+            " 123 >^456#9\n" +
+            " ^?^#?#^?^ 7\n" +
+            "^ ## <  8  +\n" +
+            "> > ^#  < ^<",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "rand6.bf",
+            "?<>>?<8>\n" +
+            ">>?<>>?<\n" +
+            "  2@4.+<\n" +
+            "1+ + +<^",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "robot.bf",
+            "vv_v#:\"*********\"*25<           01 = x coord\n" +
+            "8,:  >              ^           02 = y coord\n" +
+            "0>^  ^\"*     * *\"*25<\n" +
+            "1    >              ^\n" +
+            "p    ^\"* *** * *\"*25<\n" +
+            "2    >              ^\n" +
+            "0    ^\"* *     *\"*25<\n" +
+            "2    >              ^\n" +
+            "p    ^\"* * *   *\"*25<\n" +
+            "\"    >              ^       \n" +
+            "O    ^\"* ***** *\"*25<       >,v\n" +
+            "\"    >              ^       |:<\"You hit a wall! Game over!\"0<\n" +
+            "0    ^\"*     * *\"*25<       >25*,@                          |-*84gg20g10<\n" +
+            "1    >              ^v ,*62                       pg20g10\"O\"<  <       \n" +
+            "g    ^\"*   *   *\"*25<                                  >00g\"w\"-|\n" +
+            "0    >              ^                          >00g\"e\"-|       >01g1-01p^\n" +
+            "2    ^\"*********\"*250<                 >00g\"s\"-|       >01g1+01p        ^\n" +
+            "g  > \" \"01g02gp         \"?\",~~$:00p\"n\"-|       >02g2+02p                ^\n" +
+            ">p              62*, ^                 >02g2-02p                        ^",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "selflis2.bf",
+            "\">:#,_66*2-,@This prints itself out backwards......  but it has to be 80x1 cells",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "testbrdg.bf",
+            ">>>>v\n" +
+            "@0.v>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>#\n" +
+            "#<<<                                                                        @.1@\n",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "testmodu.bf",
+            "v The original implementation of Befunge-93 was in ANSI C (a.k.a C89).\n" +
+            "v The description of Befunge-93 did not describe how modulo should be\n" +
+            "v implemented for a negative modulus -- it relied on ANSI C's semantics.\n" +
+            "v\n" +
+            "v Unfortunately, ANSI C did not define negative modulus either.\n" +
+            "v\n" +
+            "v So this program tests what your Befunge-93 implementation does for\n" +
+            "v modulo by negative numbers.  If it outputs:\n" +
+            "v\n" +
+            "v  1 -1 : result has same sign as the dividend (like C99)\n" +
+            "v -2  2 : result has same sign as the divisor  (like Python)\n" +
+            "v\n" +
+            "v Of course, since it is undefined, other results are possible.\n" +
+            "v\n" +
+            ">703-%.07-3%.@\n",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "testpfcl.bf",
+            "000p>00g1+01p01g00g`#v_00g.000p>00g1-01p00g01g`#v_00g.@\n" +
+            "    ^p00+1g00        <         ^p00-1g00        <\n",
+            cpProperties
+        ));
+        examples.add(new ExampleProgram(
+            "toupper.bf",
+            "v,         <         <       <\n" +
+            ">~:\"a\"1-`!#^_:\"z\"1+`#^_\"aA\"--^",
+            cpProperties
+        ));
+
     }
       
     public List<String> exampleProgramNames() {

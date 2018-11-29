@@ -6,7 +6,7 @@ It aims to make it easy for a user to experiment with a large number of
 esolangs with a minimal install burden (i.e. in a Java applet), and to make
 it easy for designers to rapidly implement and showcase their esolangs.
 
-See also: [yoob.js](https://github.com/catseye/yoob.js).
+See also: [yoob.js](http://catseye.tc/node/yoob.js).
 
 Features
 --------
@@ -58,19 +58,7 @@ The API should not be expected to be stable through the 0.x series.
 Development
 -----------
 
-yoob development is hosted on Bitbucket:
-
-    https://bitbucket.org/catseye/yoob/
-
-Bugs may be reported (and features requested) on the Issue Tracker:
-
-    https://bitbucket.org/catseye/yoob/issues
-
-Official release distfiles are available on the [yoob project page][]
-at [Cat's Eye Technologies][].
-
-[yoob project page]: http://catseye.tc/projects/yoob/
-[Cat's Eye Technologies]: http://catseye.tc/
+See the [yoob entry][] at [Cat's Eye Technologies][] for details of development.
 
 TODO
 ----
@@ -95,16 +83,16 @@ much of this duplicates what's on the Issue Tracker.)
 For Further Information
 -----------------------
 
-For further information, please see the [yoob wiki][] on Bitbucket.
+For further information, please see the [yoob entry][] at
+[Cat's Eye Technologies][].
 
 Yet more information can be found in the [yoob article][] on the [esowiki][].
 
-An instance of yoob running as a Java applet can be found in the
-[yoob exhibit][] of Cat's Eye Technologies' [Gallery of Interactive
-Esolangs][].
+An instance of yoob running as a Java JNLP application can be found in the
+[yoob installation][] at Cat's Eye Technologies.
 
-[yoob wiki]: https://bitbucket.org/catseye/yoob/wiki/
 [yoob article]: http://www.esolangs.org/wiki/yoob
 [esowiki]: http://www.esolangs.org/wiki/
-[yoob exhibit]: http://catseye.tc/gallery/esolangs/yoob/
-[Gallery of Interactive Esolangs]: http://catseye.tc/gallery/esolangs/
+[yoob installation]: http://catseye.tc/installation/yoob/
+[yoob entry]: http://catseye.tc/node/yoob
+[Cat's Eye Technologies]: http://catseye.tc/
